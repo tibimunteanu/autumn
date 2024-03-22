@@ -40,10 +40,4 @@ autumn.inactive = {
   c = { bg = colors.bg_statusline, fg = colors.fg_gutter },
 }
 
-if config.lualine_bold then
-  for _, mode in pairs(autumn) do
-    mode.a.gui = "bold"
-  end
-end
-
 return autumn

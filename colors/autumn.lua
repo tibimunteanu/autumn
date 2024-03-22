@@ -1,1 +1,1 @@
-require("autumn")._load()
+require("autumn").load()

@@ -7,7 +7,6 @@ local M = {}
 ---@field fg string|nil
 ---@field bg string|nil
 ---@field sp string|nil
----@field style string|nil|Highlight
 ---@field link string|nil
 
 ---@alias Highlights table<string,Highlight>
@@ -28,7 +27,7 @@ function M.setup()
   theme.highlights = {
     Foo = { bg = c.magenta2, fg = c.fg },
 
-    Comment = { fg = c.comment, style = options.styles.comments }, -- any comment
+    Comment = { fg = c.comment }, -- any comment
     ColorColumn = { bg = c.black }, -- used for the columns set with 'colorcolumn'
     Conceal = { fg = c.dark5 }, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor = { fg = c.bg, bg = c.fg }, -- character under the cursor
@@ -107,15 +106,15 @@ function M.setup()
     -- Boolean       = { }, --  a boolean constant: TRUE, false
     -- Float         = { }, --    a floating point constant: 2.3e10
 
-    Identifier = { fg = c.magenta, style = options.styles.variables }, -- (preferred) any variable name
-    Function = { fg = c.blue, style = options.styles.functions }, -- function name (also: methods for classes)
+    Identifier = { fg = c.magenta }, -- (preferred) any variable name
+    Function = { fg = c.blue }, -- function name (also: methods for classes)
 
     Statement = { fg = c.magenta }, -- (preferred) any statement
     -- Conditional   = { }, --  if, then, else, endif, switch, etc.
     -- Repeat        = { }, --   for, do, while, etc.
     -- Label         = { }, --    case, default, etc.
     Operator = { fg = c.blue5 }, -- "sizeof", "+", "*", etc.
-    Keyword = { fg = c.cyan, style = options.styles.keywords }, --  any other keyword
+    Keyword = { fg = c.cyan }, --  any other keyword
     -- Exception     = { }, --  try, catch, throw
 
     PreProc = { fg = c.cyan }, -- (preferred) generic Preprocessor
@@ -288,8 +287,8 @@ function M.setup()
     ["@variable.parameter.builtin"] = { fg = util.lighten(c.yellow, 0.8) }, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
     --- Keywords
-    ["@keyword"] = { fg = c.purple, style = options.styles.keywords }, -- For keywords that don't fall in previous categories.
-    ["@keyword.function"] = { fg = c.magenta, style = options.styles.functions }, -- For keywords used to define a fuction.
+    ["@keyword"] = { fg = c.purple }, -- For keywords that don't fall in previous categories.
+    ["@keyword.function"] = { fg = c.magenta }, -- For keywords used to define a fuction.
 
     ["@label"] = { fg = c.blue }, -- For labels: `label:` in C and `:label:` in Lua.
 
@@ -299,7 +298,7 @@ function M.setup()
     ["@property"] = { fg = c.green1 },
 
     --- Identifiers
-    ["@variable"] = { fg = c.fg, style = options.styles.variables }, -- Any variable name that does not have another highlight.
+    ["@variable"] = { fg = c.fg }, -- Any variable name that does not have another highlight.
     ["@variable.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
     ["@module.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
 
@@ -464,7 +463,7 @@ function M.setup()
     -- NvimTree
     NvimTreeNormal = { fg = c.fg_sidebar, bg = c.bg_sidebar },
     NvimTreeWinSeparator = {
-      fg = options.styles.sidebars == "transparent" and c.border or c.bg_sidebar,
+      fg = c.bg_sidebar,
       bg = c.bg_sidebar,
     },
     NvimTreeNormalNC = { fg = c.fg_sidebar, bg = c.bg_sidebar },
@@ -736,7 +735,7 @@ function M.setup()
     MiniStarterCurrent = { nocombine = true },
     MiniStarterFooter = { fg = c.yellow, italic = true },
     MiniStarterHeader = { fg = c.blue },
-    MiniStarterInactive = { fg = c.comment, style = options.styles.comments },
+    MiniStarterInactive = { fg = c.comment },
     MiniStarterItem = { fg = c.fg, bg = options.transparent and c.none or c.bg },
     MiniStarterItemBullet = { fg = c.border_highlight },
     MiniStarterItemPrefix = { fg = c.warning },
@@ -861,21 +860,11 @@ function M.setup()
     -- StatusLineNC
     theme.highlights.StatusLineNC = inactive
 
-    -- LuaLine
-    for _, section in ipairs({ "a", "b", "c" }) do
-      theme.defer["lualine_" .. section .. "_inactive"] = inactive
-    end
-
     -- mini.statusline
     theme.highlights.MiniStatuslineInactive = inactive
   end
 
   options.on_highlights(theme.highlights, theme.colors)
-
-  if config.is_day() then
-    util.invert_colors(theme.colors)
-    util.invert_highlights(theme.highlights)
-  end
 
   return theme
 end
