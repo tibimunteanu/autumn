@@ -31,7 +31,7 @@ function M.setup()
     dark3 = "#545c7e",
     comment = "#565f89",
     dark5 = "#737aa2",
-    darker5 = "#616789"
+    darker5 = "#616789",
     blue0 = "#3d59a1",
     blue = "#7aa2f7",
     blue_darker = "#5d7ab8",
