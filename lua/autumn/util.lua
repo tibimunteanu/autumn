@@ -12,7 +12,7 @@ end
 ---@param foreground string foreground color
 ---@param background string background color
 ---@param alpha number|string number between 0 and 1. 0 results in bg, 1 results in fg
-local function M.blend(foreground, background, alpha)
+local function blend(foreground, background, alpha)
   alpha = type(alpha) == "string" and (tonumber(alpha, 16) / 0xff) or alpha
   local bg = hexToRgb(background)
   local fg = hexToRgb(foreground)
@@ -26,11 +26,11 @@ local function M.blend(foreground, background, alpha)
 end
 
 function M.darken(hex, amount, bg)
-  return M.blend(hex, bg or M.bg, amount)
+  return blend(hex, bg or M.bg, amount)
 end
 
 function M.lighten(hex, amount, fg)
-  return M.blend(hex, fg or M.fg, amount)
+  return blend(hex, fg or M.fg, amount)
 end
 
 ---@param group string
