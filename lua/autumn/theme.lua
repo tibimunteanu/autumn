@@ -1,5 +1,3 @@
-local util = require("autumn.util")
-
 local M = {}
 --
 ---@class Highlight
@@ -13,82 +11,119 @@ local M = {}
 ---@return Theme
 function M.setup()
   local config = require("autumn.config")
-  local options = config.options
+
+  local o = config.options
+
   local c = {
     none = "NONE",
     bg = "#1a1b26",
     bg_dark = "#16161e",
     bg_highlight = "#292e42",
+    bg_highlight_darker = "#202331",
+    bg_highlight_dark = "#262a3c",
+    bg_light = "222229",
     terminal_black = "#414868",
     fg = "#c0caf5",
     fg_dark = "#a9b1d6",
     fg_gutter = "#3b4261",
+    fg_gutter_dark = "#343a55",
+    fg_gutter_darker = "#2b2f44",
     dark3 = "#545c7e",
     comment = "#565f89",
     dark5 = "#737aa2",
+    darker5 = "#616789"
     blue0 = "#3d59a1",
     blue = "#7aa2f7",
+    blue_darker = "#5d7ab8",
     cyan = "#7dcfff",
     blue1 = "#2ac3de",
     blue2 = "#0db9d7",
     blue5 = "#89ddff",
     blue6 = "#b4f9f8",
     blue7 = "#394b70",
+    blue7_dark = "#1d202d",
+    blue2_dark = "#192b38",
+    blue2_darker = "#1099b4",
+    blue0_darker = "#20253a",
+    dark_blue0 = "#283457",
+    dark_blue1 = "#27a1b9",
+    dark_blue7 = "#1f2231",
+    light_blue1 = "#6ad5e8";
     magenta = "#bb9af7",
     magenta2 = "#ff007c",
     purple = "#9d7cd8",
     orange = "#ff9e64",
     yellow = "#e0af68",
+    yellow_dark = "#2e2a2d",
+    yellow_darker = "#a58354",
+    yellow2_dark = "#b8915b",
+    light_yellow = "#e6bf86",
     green = "#9ece6a",
     green1 = "#73daca",
     green2 = "#41a6b5",
+    dark_green2 = "#20303b",
     teal = "#1abc9c",
+    teal_dark = "#1a2b32",
+    teal_darker = "#1a9c84",
     red = "#f7768e",
     red1 = "#db4b4b",
+    red_dark = "#2d202a",
+    red_darker = "#b44144",
+    dark_red1 = "#37222c",
+    error_border = "#542931",
+    warning_border = "#55473a",
+    info_border = "#164a5b",
+    comment_border = "#2c2f44",
+    trace_border = "#41385b",
+    headline = "#1f2230",
     git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
     gitSigns = { add = "#266d6a", change = "#536c9e", delete = "#b2555b" },
   };
 
-  util.bg = c.bg
-
   c.diff = {
-    add = util.darken(c.green2, 0.15),
-    delete = util.darken(c.red1, 0.15),
-    change = util.darken(c.blue7, 0.15),
+    add = c.dark_green2,
+    delete = c.dark_red1,
+    change = c.dark_blue7,
     text = c.blue7,
   }
 
   c.git.ignore = c.dark3
-  c.black = util.darken(c.bg, 0.8, "#000000")
-  c.border_highlight = util.darken(c.blue1, 0.8)
+  c.black = c.bg_dark
+  c.border_highlight = c.dark_blue1
   c.border = c.black
 
   -- Popups and statusline always get a dark background
   c.bg_popup = c.bg_dark
+  c.bg_popup_sbar = c.bg_light
   c.bg_statusline = c.bg_dark
 
   c.bg_sidebar = c.bg_dark
   c.bg_float = c.bg_dark
 
-  c.bg_visual = util.darken(c.blue0, 0.4)
+  c.bg_visual = c.dark_blue0
+  c.bg_visual_dark = c.blue0_darker
   c.bg_search = c.blue0
   c.fg_sidebar = c.fg_dark
   c.fg_float = c.fg
 
   c.error = c.red1
+  c.error_dark = c.red_dark
+  c.error_darker = c.red_darker
   c.todo = c.blue
   c.warning = c.yellow
+  c.warning_dark = c.yellow_dark
+  c.warning_darker = c.yellow_darker
+  c.warning2_dark = c.yellow2_dark
   c.info = c.blue2
+  c.info_dark = c.blue2_dark
+  c.info_darker = c.blue2_darker
   c.hint = c.teal
-
-  c.delta = {
-    add = util.darken(c.green2, 0.45),
-    delete = util.darken(c.red1, 0.45),
-  }
+  c.hint_dark = c.teal_dark
+  c.hint_darker = c.teal_darker
 
   ---@class Theme
   local theme = {
-    config = options,
+    config = o,
     colors = c,
   }
 
@@ -116,8 +151,8 @@ function M.setup()
     VertSplit = { fg = c.border }, -- the column separating vertically split windows
     WinSeparator = { fg = c.border, bold = true }, -- the column separating vertically split windows
     Folded = { fg = c.blue, bg = c.fg_gutter }, -- line used for closed folds
-    FoldColumn = { bg = options.transparent and c.none or c.bg, fg = c.comment }, -- 'foldcolumn'
-    SignColumn = { bg = options.transparent and c.none or c.bg, fg = c.fg_gutter }, -- column where |signs| are displayed
+    FoldColumn = { bg = o.transparent and c.none or c.bg, fg = c.comment }, -- 'foldcolumn'
+    SignColumn = { bg = o.transparent and c.none or c.bg, fg = c.fg_gutter }, -- column where |signs| are displayed
     SignColumnSB = { bg = c.bg_sidebar, fg = c.fg_gutter }, -- column where |signs| are displayed
     Substitute = { bg = c.red, fg = c.black }, -- |:substitute| replacement text highlighting
     LineNr = { fg = c.fg_gutter }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
@@ -128,15 +163,15 @@ function M.setup()
     -- MsgSeparator= { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg = { fg = c.blue }, -- |more-prompt|
     NonText = { fg = c.dark3 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal = { fg = c.fg, bg = options.transparent and c.none or c.bg }, -- normal text
-    NormalNC = { fg = c.fg, bg = options.transparent and c.none or options.dim_inactive and c.bg_dark or c.bg }, -- normal text in non-current windows
+    Normal = { fg = c.fg, bg = o.transparent and c.none or c.bg }, -- normal text
+    NormalNC = { fg = c.fg, bg = o.transparent and c.none or o.dim_inactive and c.bg_dark or c.bg }, -- normal text in non-current windows
     NormalSB = { fg = c.fg_sidebar, bg = c.bg_sidebar }, -- normal text in sidebar
     NormalFloat = { fg = c.fg_float, bg = c.bg_float }, -- Normal text in floating windows.
     FloatBorder = { fg = c.border_highlight, bg = c.bg_float },
     FloatTitle = { fg = c.border_highlight, bg = c.bg_float },
     Pmenu = { bg = c.bg_popup, fg = c.fg }, -- Popup menu: normal item.
-    PmenuSel = { bg = util.darken(c.fg_gutter, 0.8) }, -- Popup menu: selected item.
-    PmenuSbar = { bg = util.lighten(c.bg_popup, 0.95) }, -- Popup menu: scrollbar.
+    PmenuSel = { bg = c.fg_gutter_dark) }, -- Popup menu: selected item.
+    PmenuSbar = { bg = c.bg_popup_sbar }, -- Popup menu: scrollbar.
     PmenuThumb = { bg = c.fg_gutter }, -- Popup menu: Thumb of the scrollbar.
     Question = { fg = c.blue }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine = { bg = c.bg_visual, bold = true }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
@@ -237,7 +272,6 @@ function M.setup()
     ["helpCommand"] = { bg = c.terminal_black, fg = c.blue },
 
     debugPC = { bg = c.bg_sidebar }, -- used for highlighting the current line in terminal-debug
-    debugBreakpoint = { bg = util.darken(c.info, 0.1), fg = c.info }, -- used for breakpoint colors in terminal-debug
 
     dosIniLabel = { link = "@property" },
 
@@ -254,26 +288,26 @@ function M.setup()
     DiagnosticHint = { fg = c.hint }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
     DiagnosticUnnecessary = { fg = c.terminal_black }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
 
-    DiagnosticVirtualTextError = { bg = util.darken(c.error, 0.1), fg = c.error }, -- Used for "Error" diagnostic virtual text
-    DiagnosticVirtualTextWarn = { bg = util.darken(c.warning, 0.1), fg = c.warning }, -- Used for "Warning" diagnostic virtual text
-    DiagnosticVirtualTextInfo = { bg = util.darken(c.info, 0.1), fg = c.info }, -- Used for "Information" diagnostic virtual text
-    DiagnosticVirtualTextHint = { bg = util.darken(c.hint, 0.1), fg = c.hint }, -- Used for "Hint" diagnostic virtual text
+    DiagnosticVirtualTextError = { bg = c.error_dark, fg = c.error }, -- Used for "Error" diagnostic virtual text
+    DiagnosticVirtualTextWarn = { bg = c.warning_dark, fg = c.warning }, -- Used for "Warning" diagnostic virtual text
+    DiagnosticVirtualTextInfo = { bg = c.info_dark, fg = c.info }, -- Used for "Information" diagnostic virtual text
+    DiagnosticVirtualTextHint = { bg = c.hint_dark, fg = c.hint }, -- Used for "Hint" diagnostic virtual text
 
     DiagnosticUnderlineError = { undercurl = true, sp = c.error }, -- Used to underline "Error" diagnostics
     DiagnosticUnderlineWarn = { undercurl = true, sp = c.warning }, -- Used to underline "Warning" diagnostics
     DiagnosticUnderlineInfo = { undercurl = true, sp = c.info }, -- Used to underline "Information" diagnostics
     DiagnosticUnderlineHint = { undercurl = true, sp = c.hint }, -- Used to underline "Hint" diagnostics
 
-    LspSignatureActiveParameter = { bg = util.darken(c.bg_visual, 0.4), bold = true },
+    LspSignatureActiveParameter = { bg = c.bg_visual_dark, bold = true },
     LspCodeLens = { fg = c.comment },
-    LspInlayHint = { bg = util.darken(c.blue7, 0.1), fg = c.dark3 },
+    LspInlayHint = { bg = c.blue7_dark, fg = c.dark3 },
 
     LspInfoBorder = { fg = c.border_highlight, bg = c.bg_float },
 
     ALEErrorSign = { fg = c.error },
     ALEWarningSign = { fg = c.warning },
 
-    DapStoppedLine = { bg = util.darken(c.warning, 0.1) }, -- Used for "Warning" diagnostic virtual text
+    DapStoppedLine = { bg = c.warning_dark }, -- Used for "Warning" diagnostic virtual text
 
     -- These groups are for the Neovim tree-sitter highlights.
     ["@annotation"] = { link = "PreProc" },
@@ -353,7 +387,7 @@ function M.setup()
     --- Functions
     ["@constructor"] = { fg = c.magenta }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
     ["@variable.parameter"] = { fg = c.yellow }, -- For parameters of a function.
-    ["@variable.parameter.builtin"] = { fg = util.lighten(c.yellow, 0.8) }, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
+    ["@variable.parameter.builtin"] = { fg = c.light_yellow}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
     --- Keywords
     ["@keyword"] = { fg = c.purple }, -- For keywords that don't fall in previous categories.
@@ -362,7 +396,7 @@ function M.setup()
     ["@label"] = { fg = c.blue }, -- For labels: `label:` in C and `:label:` in Lua.
 
     --- Types
-    ["@type.builtin"] = { fg = util.darken(c.blue1, 0.8) },
+    ["@type.builtin"] = { fg = c.dark_blue1 },
     ["@variable.member"] = { fg = c.green1 }, -- For fields.
     ["@property"] = { fg = c.green1 },
 
@@ -388,7 +422,7 @@ function M.setup()
     -- tsx
     ["@tag.tsx"] = { fg = c.red },
     ["@constructor.tsx"] = { fg = c.blue1 },
-    ["@tag.delimiter.tsx"] = { fg = util.darken(c.blue, 0.7) },
+    ["@tag.delimiter.tsx"] = { fg = c.blue_darker },
 
     -- LSP Semantic Token Groups
     ["@lsp.type.boolean"] = { link = "@boolean" },
@@ -401,7 +435,7 @@ function M.setup()
     ["@lsp.type.escapeSequence"] = { link = "@string.escape" },
     ["@lsp.type.formatSpecifier"] = { link = "@markup.list" },
     ["@lsp.type.generic"] = { link = "@variable" },
-    ["@lsp.type.interface"] = { fg = util.lighten(c.blue1, 0.7) },
+    ["@lsp.type.interface"] = { fg = c.light_blue1 },
     ["@lsp.type.keyword"] = { link = "@keyword" },
     ["@lsp.type.lifetime"] = { link = "@keyword.storage" },
     ["@lsp.type.namespace"] = { link = "@module" },
@@ -426,8 +460,8 @@ function M.setup()
     ["@lsp.typemod.operator.injected"] = { link = "@operator" },
     ["@lsp.typemod.string.injected"] = { link = "@string" },
     ["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
-    ["@lsp.typemod.type.defaultLibrary"] = { fg = util.darken(c.blue1, 0.8) },
-    ["@lsp.typemod.typeAlias.defaultLibrary"] = { fg = util.darken(c.blue1, 0.8) },
+    ["@lsp.typemod.type.defaultLibrary"] = { fg = c.dark_blue1 },
+    ["@lsp.typemod.typeAlias.defaultLibrary"] = { fg = c.dark_blue1 },
     ["@lsp.typemod.variable.callable"] = { link = "@function" },
     ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
     ["@lsp.typemod.variable.injected"] = { link = "@variable" },
@@ -489,7 +523,7 @@ function M.setup()
     NeogitRemote = { fg = c.purple },
     NeogitHunkHeader = { bg = c.bg_highlight, fg = c.fg },
     NeogitHunkHeaderHighlight = { bg = c.fg_gutter, fg = c.blue },
-    NeogitDiffContextHighlight = { bg = util.darken(c.fg_gutter, 0.5), fg = c.fg_dark },
+    NeogitDiffContextHighlight = { bg = c.fg_gutter_darker, fg = c.fg_dark },
     NeogitDiffDeleteHighlight = { fg = c.git.delete, bg = c.diff.delete },
     NeogitDiffAddHighlight = { fg = c.git.add, bg = c.diff.add },
 
@@ -649,18 +683,18 @@ function M.setup()
     BufferVisibleMod = { bg = c.bg_statusline, fg = c.warning },
     BufferVisibleSign = { bg = c.bg_statusline, fg = c.info },
     BufferVisibleTarget = { bg = c.bg_statusline, fg = c.red },
-    BufferInactive = { bg = util.darken(c.bg_highlight, 0.4), fg = util.darken(c.dark5, 0.8) },
-    BufferInactiveERROR = { bg = util.darken(c.bg_highlight, 0.4), fg = util.darken(c.error, 0.8) },
-    BufferInactiveHINT = { bg = util.darken(c.bg_highlight, 0.4), fg = util.darken(c.hint, 0.8) },
-    -- BufferInactiveIcon = { bg = c.bg_statusline, fg = util.darken(c., 0.1) },
-    BufferInactiveINFO = { bg = util.darken(c.bg_highlight, 0.4), fg = util.darken(c.info, 0.8) },
-    BufferInactiveWARN = { bg = util.darken(c.bg_highlight, 0.4), fg = util.darken(c.warning, 0.8) },
-    BufferInactiveIndex = { bg = util.darken(c.bg_highlight, 0.4), fg = c.dark5 },
-    BufferInactiveMod = { bg = util.darken(c.bg_highlight, 0.4), fg = util.darken(c.warning, 0.8) },
-    BufferInactiveSign = { bg = util.darken(c.bg_highlight, 0.4), fg = c.bg },
-    BufferInactiveTarget = { bg = util.darken(c.bg_highlight, 0.4), fg = c.red },
+    BufferInactive = { bg = bg_highlight_darker, fg = darker5 },
+    BufferInactiveERROR = { bg = bg_highlight_darker, fg = error_darker },
+    BufferInactiveHINT = { bg = bg_highlight_darker, fg = hint_darker },
+    -- BufferInactiveIcon = { bg = c.bg_statusline, fg = c.hint },
+    BufferInactiveINFO = { bg = bg_highlight_darker, fg = info_darker },
+    BufferInactiveWARN = { bg = bg_highlight_darker, fg = warning2_dark },
+    BufferInactiveIndex = { bg = bg_highlight_darker, fg = c.dark5 },
+    BufferInactiveMod = { bg = bg_highlight_darker, fg = warning2_dark },
+    BufferInactiveSign = { bg = bg_highlight_darker, fg = c.bg },
+    BufferInactiveTarget = { bg = bg_highlight_darker, fg = c.red },
     BufferOffset = { bg = c.bg_statusline, fg = c.dark5 },
-    BufferTabpageFill = { bg = util.darken(c.bg_highlight, 0.8), fg = c.dark5 },
+    BufferTabpageFill = { bg = bg_highlight_dark, fg = c.dark5 },
     BufferTabpages = { bg = c.bg_statusline, fg = c.none },
 
     -- Sneak
@@ -670,7 +704,7 @@ function M.setup()
     -- Hop
     HopNextKey = { fg = c.magenta2, bold = true },
     HopNextKey1 = { fg = c.blue2, bold = true },
-    HopNextKey2 = { fg = util.darken(c.blue2, 0.6) },
+    HopNextKey2 = { fg = c.blue2_dark },
     HopUnmatched = { fg = c.dark3 },
 
     TSNodeKey = { fg = c.magenta2, bold = true },
@@ -764,11 +798,11 @@ function M.setup()
     -- Notify
     NotifyBackground = { fg = c.fg, bg = c.bg },
     --- Border
-    NotifyERRORBorder = { fg = util.darken(c.error, 0.3), bg = options.transparent and c.none or c.bg },
-    NotifyWARNBorder = { fg = util.darken(c.warning, 0.3), bg = options.transparent and c.none or c.bg },
-    NotifyINFOBorder = { fg = util.darken(c.info, 0.3), bg = options.transparent and c.none or c.bg },
-    NotifyDEBUGBorder = { fg = util.darken(c.comment, 0.3), bg = options.transparent and c.none or c.bg },
-    NotifyTRACEBorder = { fg = util.darken(c.purple, 0.3), bg = options.transparent and c.none or c.bg },
+    NotifyERRORBorder = { fg = c.error_border, bg = o.transparent and c.none or c.bg },
+    NotifyWARNBorder = { fg = c.warning_border, bg = o.transparent and c.none or c.bg },
+    NotifyINFOBorder = { fg = c.info_border, bg = o.transparent and c.none or c.bg },
+    NotifyDEBUGBorder = { fg = c.comment_border, bg = o.transparent and c.none or c.bg },
+    NotifyTRACEBorder = { fg = c.trace_border, bg = o.transparent and c.none or c.bg },
     --- Icons
     NotifyERRORIcon = { fg = c.error },
     NotifyWARNIcon = { fg = c.warning },
@@ -782,11 +816,11 @@ function M.setup()
     NotifyDEBUGTitle = { fg = c.comment },
     NotifyTRACETitle = { fg = c.purple },
     --- Body
-    NotifyERRORBody = { fg = c.fg, bg = options.transparent and c.none or c.bg },
-    NotifyWARNBody = { fg = c.fg, bg = options.transparent and c.none or c.bg },
-    NotifyINFOBody = { fg = c.fg, bg = options.transparent and c.none or c.bg },
-    NotifyDEBUGBody = { fg = c.fg, bg = options.transparent and c.none or c.bg },
-    NotifyTRACEBody = { fg = c.fg, bg = options.transparent and c.none or c.bg },
+    NotifyERRORBody = { fg = c.fg, bg = o.transparent and c.none or c.bg },
+    NotifyWARNBody = { fg = c.fg, bg = o.transparent and c.none or c.bg },
+    NotifyINFOBody = { fg = c.fg, bg = o.transparent and c.none or c.bg },
+    NotifyDEBUGBody = { fg = c.fg, bg = o.transparent and c.none or c.bg },
+    NotifyTRACEBody = { fg = c.fg, bg = o.transparent and c.none or c.bg },
 
     -- Mini
     MiniCompletionActiveParameter = { underline = true },
@@ -805,7 +839,7 @@ function M.setup()
     MiniStarterFooter = { fg = c.yellow, italic = true },
     MiniStarterHeader = { fg = c.blue },
     MiniStarterInactive = { fg = c.comment },
-    MiniStarterItem = { fg = c.fg, bg = options.transparent and c.none or c.bg },
+    MiniStarterItem = { fg = c.fg, bg = o.transparent and c.none or c.bg },
     MiniStarterItemBullet = { fg = c.border_highlight },
     MiniStarterItemPrefix = { fg = c.warning },
     MiniStarterSection = { fg = c.blue1 },
@@ -828,7 +862,7 @@ function M.setup()
     MiniTablineFill = { bg = c.black },
     MiniTablineHidden = { fg = c.dark5, bg = c.bg_statusline },
     MiniTablineModifiedCurrent = { fg = c.warning, bg = c.fg_gutter },
-    MiniTablineModifiedHidden = { bg = c.bg_statusline, fg = util.darken(c.warning, 0.7) },
+    MiniTablineModifiedHidden = { bg = c.bg_statusline, fg = c.warning_darker },
     MiniTablineModifiedVisible = { fg = c.warning, bg = c.bg_statusline },
     MiniTablineTabpagesection = { bg = c.bg_statusline, fg = c.none },
     MiniTablineVisible = { fg = c.fg, bg = c.bg_statusline },
@@ -843,9 +877,8 @@ function M.setup()
 
     NoiceCompletionItemKindDefault = { fg = c.fg_dark, bg = c.none },
 
-    TreesitterContext = { bg = util.darken(c.fg_gutter, 0.8) },
+    TreesitterContext = { bg = c.fg_gutter_dark },
     Hlargs = { fg = c.yellow },
-    -- TreesitterContext = { bg = util.darken(c.bg_visual, 0.4) },
   }
 
   -- lsp symbol kind and completion kind highlights
@@ -899,7 +932,7 @@ function M.setup()
 
   for i, color in ipairs(markdown_rainbow) do
     theme.highlights["@markup.heading." .. i .. ".markdown"] = { fg = color, bold = true }
-    theme.highlights["Headline" .. i] = { bg = util.darken(color, 0.05) }
+    theme.highlights["Headline" .. i] = { bg = c.headline }
   end
   theme.highlights["Headline"] = { link = "Headline1" }
 
@@ -923,7 +956,7 @@ function M.setup()
   ---@type table<string, table>
   theme.defer = {}
 
-  if options.hide_inactive_statusline then
+  if o.hide_inactive_statusline then
     local inactive = { underline = true, bg = c.none, fg = c.bg, sp = c.border }
 
     -- StatusLineNC
