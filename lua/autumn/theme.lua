@@ -170,7 +170,7 @@ function M.setup()
     FloatBorder = { fg = c.border_highlight, bg = c.bg_float },
     FloatTitle = { fg = c.border_highlight, bg = c.bg_float },
     Pmenu = { bg = c.bg_popup, fg = c.fg }, -- Popup menu: normal item.
-    PmenuSel = { bg = c.fg_gutter_dark) }, -- Popup menu: selected item.
+    PmenuSel = { bg = c.fg_gutter_dark }, -- Popup menu: selected item.
     PmenuSbar = { bg = c.bg_popup_sbar }, -- Popup menu: scrollbar.
     PmenuThumb = { bg = c.fg_gutter }, -- Popup menu: Thumb of the scrollbar.
     Question = { fg = c.blue }, -- |hit-enter| prompt and yes/no questions
