@@ -14,86 +14,85 @@ local M = {}
 function M.setup()
   local config = require("autumn.config")
   local options = config.options
-  ---@class Theme
-  ---@field highlights Highlights
-  local theme = {
-    config = options,
+  local c = {
+    none = "NONE",
+    bg = "#1a1b26",
+    bg_dark = "#16161e",
+    bg_highlight = "#292e42",
+    terminal_black = "#414868",
+    fg = "#c0caf5",
+    fg_dark = "#a9b1d6",
+    fg_gutter = "#3b4261",
+    dark3 = "#545c7e",
+    comment = "#565f89",
+    dark5 = "#737aa2",
+    blue0 = "#3d59a1",
+    blue = "#7aa2f7",
+    cyan = "#7dcfff",
+    blue1 = "#2ac3de",
+    blue2 = "#0db9d7",
+    blue5 = "#89ddff",
+    blue6 = "#b4f9f8",
+    blue7 = "#394b70",
+    magenta = "#bb9af7",
+    magenta2 = "#ff007c",
+    purple = "#9d7cd8",
+    orange = "#ff9e64",
+    yellow = "#e0af68",
+    green = "#9ece6a",
+    green1 = "#73daca",
+    green2 = "#41a6b5",
+    teal = "#1abc9c",
+    red = "#f7768e",
+    red1 = "#db4b4b",
+    git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
+    gitSigns = { add = "#266d6a", change = "#536c9e", delete = "#b2555b" },
+  };
 
-    colors = {
-      none = "NONE",
-      bg = "#1a1b26",
-      bg_dark = "#16161e",
-      bg_highlight = "#292e42",
-      terminal_black = "#414868",
-      fg = "#c0caf5",
-      fg_dark = "#a9b1d6",
-      fg_gutter = "#3b4261",
-      dark3 = "#545c7e",
-      comment = "#565f89",
-      dark5 = "#737aa2",
-      blue0 = "#3d59a1",
-      blue = "#7aa2f7",
-      cyan = "#7dcfff",
-      blue1 = "#2ac3de",
-      blue2 = "#0db9d7",
-      blue5 = "#89ddff",
-      blue6 = "#b4f9f8",
-      blue7 = "#394b70",
-      magenta = "#bb9af7",
-      magenta2 = "#ff007c",
-      purple = "#9d7cd8",
-      orange = "#ff9e64",
-      yellow = "#e0af68",
-      green = "#9ece6a",
-      green1 = "#73daca",
-      green2 = "#41a6b5",
-      teal = "#1abc9c",
-      red = "#f7768e",
-      red1 = "#db4b4b",
-      git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
-      gitSigns = { add = "#266d6a", change = "#536c9e", delete = "#b2555b" },
-    };
+  util.bg = c.bg
 
-    util.bg = colors.bg
-
-    colors.diff = {
-      add = util.darken(colors.green2, 0.15),
-      delete = util.darken(colors.red1, 0.15),
-      change = util.darken(colors.blue7, 0.15),
-      text = colors.blue7,
-    }
-
-    colors.git.ignore = colors.dark3
-    colors.black = util.darken(colors.bg, 0.8, "#000000")
-    colors.border_highlight = util.darken(colors.blue1, 0.8)
-    colors.border = colors.black
-
-    -- Popups and statusline always get a dark background
-    colors.bg_popup = colors.bg_dark
-    colors.bg_statusline = colors.bg_dark
-
-    colors.bg_sidebar = colors.bg_dark
-    colors.bg_float = colors.bg_dark
-
-    colors.bg_visual = util.darken(colors.blue0, 0.4)
-    colors.bg_search = colors.blue0
-    colors.fg_sidebar = colors.fg_dark
-    colors.fg_float = colors.fg
-
-    colors.error = colors.red1
-    colors.todo = colors.blue
-    colors.warning = colors.yellow
-    colors.info = colors.blue2
-    colors.hint = colors.teal
-
-    colors.delta = {
-      add = util.darken(colors.green2, 0.45),
-      delete = util.darken(colors.red1, 0.45),
-    }
+  c.diff = {
+    add = util.darken(c.green2, 0.15),
+    delete = util.darken(c.red1, 0.15),
+    change = util.darken(c.blue7, 0.15),
+    text = c.blue7,
   }
 
-  local c = theme.colors
+  c.git.ignore = c.dark3
+  c.black = util.darken(c.bg, 0.8, "#000000")
+  c.border_highlight = util.darken(c.blue1, 0.8)
+  c.border = c.black
 
+  -- Popups and statusline always get a dark background
+  c.bg_popup = c.bg_dark
+  c.bg_statusline = c.bg_dark
+
+  c.bg_sidebar = c.bg_dark
+  c.bg_float = c.bg_dark
+
+  c.bg_visual = util.darken(c.blue0, 0.4)
+  c.bg_search = c.blue0
+  c.fg_sidebar = c.fg_dark
+  c.fg_float = c.fg
+
+  c.error = c.red1
+  c.todo = c.blue
+  c.warning = c.yellow
+  c.info = c.blue2
+  c.hint = c.teal
+
+  c.delta = {
+    add = util.darken(c.green2, 0.45),
+    delete = util.darken(c.red1, 0.45),
+  }
+
+  ---@class Theme
+  local theme = {
+    config = options,
+    colors = c,
+  }
+
+  ---@field highlights Highlights
   theme.highlights = {
     Foo = { bg = c.magenta2, fg = c.fg },
 
