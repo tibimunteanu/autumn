@@ -453,7 +453,7 @@ function M.setup()
     ["@keyword"] = { fg = p.keyword }, -- For keywords that don't fall in previous categories.
     ["@keyword.function"] = { fg = c.magenta }, -- For keywords used to define a fuction.
 
-    ["@label"] = { fg = c.blue }, -- For labels: `label:` in C and `:label:` in Lua.
+    ["@label"] = { fg = p.punctuation }, -- For labels: `label:` in C and `:label:` in Lua.
 
     --- Types
     ["@type.builtin"] = { fg = c.dark_blue1 },
@@ -462,7 +462,7 @@ function M.setup()
 
     --- Identifiers
     ["@variable"] = { fg = p.fg }, -- Any variable name that does not have another highlight.
-    ["@variable.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
+    ["@variable.builtin"] = { fg = p.fg }, -- Variable names that are defined by the languages, like `this` or `self`.
     ["@module.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
 
     --- Text
