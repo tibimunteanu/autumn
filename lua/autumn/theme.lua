@@ -21,7 +21,7 @@ function M.setup()
     bg_highlight = "#292e42",
     bg_highlight_darker = "#202331",
     bg_highlight_dark = "#262a3c",
-    bg_light = "222229",
+    bg_light = "#222229",
     terminal_black = "#414868",
     fg = "#c0caf5",
     fg_dark = "#a9b1d6",
