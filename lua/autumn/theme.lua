@@ -163,8 +163,8 @@ function M.setup()
   c.bg_visual = c.dark_blue0
   c.bg_visual_dark = c.blue0_darker
   c.bg_search = c.blue0
-  p.fg_sidebar = p.fg_dark
-  p.fg_float = p.fg
+  c.fg_sidebar = c.fg_dark
+  c.fg_float = c.fg
 
   c.error = c.red1
   c.error_dark = c.red_dark
@@ -210,29 +210,29 @@ function M.setup()
     ErrorMsg = { fg = c.error }, -- error messages on the command line
     VertSplit = { fg = c.border }, -- the column separating vertically split windows
     WinSeparator = { fg = c.border, bold = true }, -- the column separating vertically split windows
-    Folded = { fg = c.blue, bg = p.fg_gutter }, -- line used for closed folds
+    Folded = { fg = c.blue, bg = c.fg_gutter }, -- line used for closed folds
     FoldColumn = { bg = o.transparent and c.none or c.bg, fg = c.comment }, -- 'foldcolumn'
-    SignColumn = { bg = o.transparent and c.none or c.bg, fg = p.fg_gutter }, -- column where |signs| are displayed
-    SignColumnSB = { bg = c.bg_sidebar, fg = p.fg_gutter }, -- column where |signs| are displayed
+    SignColumn = { bg = o.transparent and c.none or c.bg, fg = c.fg_gutter }, -- column where |signs| are displayed
+    SignColumnSB = { bg = c.bg_sidebar, fg = c.fg_gutter }, -- column where |signs| are displayed
     Substitute = { bg = c.red, fg = c.black }, -- |:substitute| replacement text highlighting
-    LineNr = { fg = p.fg_gutter }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    LineNr = { fg = c.fg_gutter }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     CursorLineNr = { fg = c.dark5 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     MatchParen = { fg = c.orange, bold = true }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg = { fg = p.fg_dark, bold = true }, -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgArea = { fg = p.fg_dark }, -- Area for messages and cmdline
+    ModeMsg = { fg = c.fg_dark, bold = true }, -- 'showmode' message (e.g., "-- INSERT -- ")
+    MsgArea = { fg = c.fg_dark }, -- Area for messages and cmdline
     -- MsgSeparator= { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg = { fg = c.blue }, -- |more-prompt|
     NonText = { fg = c.dark3 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     Normal = { fg = p.fg, bg = o.transparent and c.none or c.bg }, -- normal text
     NormalNC = { fg = p.fg, bg = o.transparent and c.none or o.dim_inactive and c.bg_dark or c.bg }, -- normal text in non-current windows
-    NormalSB = { fg = p.fg_sidebar, bg = c.bg_sidebar }, -- normal text in sidebar
-    NormalFloat = { fg = p.fg_float, bg = c.bg_float }, -- Normal text in floating windows.
+    NormalSB = { fg = c.fg_sidebar, bg = c.bg_sidebar }, -- normal text in sidebar
+    NormalFloat = { fg = c.fg_float, bg = c.bg_float }, -- Normal text in floating windows.
     FloatBorder = { fg = c.border_highlight, bg = c.bg_float },
     FloatTitle = { fg = c.border_highlight, bg = c.bg_float },
     Pmenu = { bg = c.bg_popup, fg = p.fg }, -- Popup menu: normal item.
-    PmenuSel = { bg = p.fg_gutter_dark }, -- Popup menu: selected item.
+    PmenuSel = { bg = c.fg_gutter_dark }, -- Popup menu: selected item.
     PmenuSbar = { bg = c.bg_popup_sbar }, -- Popup menu: scrollbar.
-    PmenuThumb = { bg = p.fg_gutter }, -- Popup menu: Thumb of the scrollbar.
+    PmenuThumb = { bg = c.fg_gutter }, -- Popup menu: Thumb of the scrollbar.
     Question = { fg = c.blue }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine = { bg = c.bg_visual, bold = true }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
     Search = { bg = c.bg_search, fg = p.fg }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
@@ -243,16 +243,16 @@ function M.setup()
     SpellCap = { sp = c.warning, undercurl = true }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal = { sp = c.info, undercurl = true }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare = { sp = c.hint, undercurl = true }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-    StatusLine = { fg = p.fg_sidebar, bg = c.bg_statusline }, -- status line of current window
-    StatusLineNC = { fg = p.fg_gutter, bg = c.bg_statusline }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine = { bg = c.bg_statusline, fg = p.fg_gutter }, -- tab pages line, not active tab page label
+    StatusLine = { fg = c.fg_sidebar, bg = c.bg_statusline }, -- status line of current window
+    StatusLineNC = { fg = c.fg_gutter, bg = c.bg_statusline }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    TabLine = { bg = c.bg_statusline, fg = c.fg_gutter }, -- tab pages line, not active tab page label
     TabLineFill = { bg = c.black }, -- tab pages line, where there are no labels
     TabLineSel = { fg = c.black, bg = c.blue }, -- tab pages line, active tab page label
     Title = { fg = c.blue, bold = true }, -- titles for output from ":set all", ":autocmd" etc.
     Visual = { bg = c.bg_visual }, -- Visual mode selection
     VisualNOS = { bg = c.bg_visual }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg = { fg = c.warning }, -- warning messages
-    Whitespace = { fg = p.fg_gutter }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
+    Whitespace = { fg = c.fg_gutter }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     WildMenu = { bg = c.bg_visual }, -- current match in 'wildmenu' completion
     WinBar = { link = "StatusLine" }, -- window bar
     WinBarNC = { link = "StatusLineNC" }, -- window bar in inactive windows
@@ -338,9 +338,9 @@ function M.setup()
     -- These groups are for the native LSP client. Some other LSP clients may
     -- use these groups, or use their own. Consult your LSP client's
     -- documentation.
-    LspReferenceText = { bg = p.fg_gutter }, -- used for highlighting "text" references
-    LspReferenceRead = { bg = p.fg_gutter }, -- used for highlighting "read" references
-    LspReferenceWrite = { bg = p.fg_gutter }, -- used for highlighting "write" references
+    LspReferenceText = { bg = c.fg_gutter }, -- used for highlighting "text" references
+    LspReferenceRead = { bg = c.fg_gutter }, -- used for highlighting "read" references
+    LspReferenceWrite = { bg = c.fg_gutter }, -- used for highlighting "write" references
 
     DiagnosticError = { fg = c.error }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
     DiagnosticWarn = { fg = c.warning }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
@@ -559,16 +559,16 @@ function M.setup()
     RainbowDelimiterCyan = { fg = c.cyan },
 
     -- LspTrouble
-    TroubleText = { fg = p.fg_dark },
-    TroubleCount = { fg = c.magenta, bg = p.fg_gutter },
+    TroubleText = { fg = c.fg_dark },
+    TroubleCount = { fg = c.magenta, bg = c.fg_gutter },
     TroubleNormal = { fg = p.fg, bg = c.bg_sidebar },
 
     -- Illuminate
-    illuminatedWord = { bg = p.fg_gutter },
-    illuminatedCurWord = { bg = p.fg_gutter },
-    IlluminatedWordText = { bg = p.fg_gutter },
-    IlluminatedWordRead = { bg = p.fg_gutter },
-    IlluminatedWordWrite = { bg = p.fg_gutter },
+    illuminatedWord = { bg = c.fg_gutter },
+    illuminatedCurWord = { bg = c.fg_gutter },
+    IlluminatedWordText = { bg = c.fg_gutter },
+    IlluminatedWordRead = { bg = c.fg_gutter },
+    IlluminatedWordWrite = { bg = c.fg_gutter },
 
     -- diff
     diffAdded = { fg = c.git.add },
@@ -584,8 +584,8 @@ function M.setup()
     NeogitBranch = { fg = c.magenta },
     NeogitRemote = { fg = c.purple },
     NeogitHunkHeader = { bg = c.bg_highlight, fg = p.fg },
-    NeogitHunkHeaderHighlight = { bg = p.fg_gutter, fg = c.blue },
-    NeogitDiffContextHighlight = { bg = p.fg_gutter_darker, fg = p.fg_dark },
+    NeogitHunkHeaderHighlight = { bg = c.fg_gutter, fg = c.blue },
+    NeogitDiffContextHighlight = { bg = c.fg_gutter_darker, fg = c.fg_dark },
     NeogitDiffDeleteHighlight = { fg = c.git.delete, bg = c.diff.delete },
     NeogitDiffAddHighlight = { fg = c.git.add, bg = c.diff.add },
 
@@ -594,14 +594,14 @@ function M.setup()
     NeotestRunning = { fg = c.yellow },
     NeotestFailed = { fg = c.red },
     NeotestSkipped = { fg = c.blue },
-    NeotestTest = { fg = p.fg_sidebar },
+    NeotestTest = { fg = c.fg_sidebar },
     NeotestNamespace = { fg = c.green2 },
     NeotestFocused = { fg = c.yellow },
     NeotestFile = { fg = c.teal },
     NeotestDir = { fg = c.blue },
     NeotestBorder = { fg = c.blue },
-    NeotestIndent = { fg = p.fg_sidebar },
-    NeotestExpandMarker = { fg = p.fg_sidebar },
+    NeotestIndent = { fg = c.fg_sidebar },
+    NeotestExpandMarker = { fg = c.fg_sidebar },
     NeotestAdapterName = { fg = c.purple, bold = true },
     NeotestWinSelect = { fg = c.blue },
     NeotestMarked = { fg = c.blue },
@@ -626,27 +626,27 @@ function M.setup()
     TelescopeNormal = { fg = p.fg, bg = c.bg_float },
 
     -- NvimTree
-    NvimTreeNormal = { fg = p.fg_sidebar, bg = c.bg_sidebar },
+    NvimTreeNormal = { fg = c.fg_sidebar, bg = c.bg_sidebar },
     NvimTreeWinSeparator = {
       fg = c.bg_sidebar,
       bg = c.bg_sidebar,
     },
-    NvimTreeNormalNC = { fg = p.fg_sidebar, bg = c.bg_sidebar },
+    NvimTreeNormalNC = { fg = c.fg_sidebar, bg = c.bg_sidebar },
     NvimTreeRootFolder = { fg = c.blue, bold = true },
     NvimTreeGitDirty = { fg = c.git.change },
     NvimTreeGitNew = { fg = c.git.add },
     NvimTreeGitDeleted = { fg = c.git.delete },
     NvimTreeOpenedFile = { bg = c.bg_highlight },
     NvimTreeSpecialFile = { fg = c.purple, underline = true },
-    NvimTreeIndentMarker = { fg = p.fg_gutter },
-    NvimTreeImageFile = { fg = p.fg_sidebar },
+    NvimTreeIndentMarker = { fg = c.fg_gutter },
+    NvimTreeImageFile = { fg = c.fg_sidebar },
     NvimTreeSymlink = { fg = c.blue },
     NvimTreeFolderIcon = { bg = c.none, fg = c.blue },
-    -- NvimTreeFolderName= { fg = p.fg_float },
+    -- NvimTreeFolderName= { fg = c.fg_float },
 
-    NeoTreeNormal = { fg = p.fg_sidebar, bg = c.bg_sidebar },
-    NeoTreeNormalNC = { fg = p.fg_sidebar, bg = c.bg_sidebar },
-    NeoTreeDimText = { fg = p.fg_gutter },
+    NeoTreeNormal = { fg = c.fg_sidebar, bg = c.bg_sidebar },
+    NeoTreeNormalNC = { fg = c.fg_sidebar, bg = c.bg_sidebar },
+    NeoTreeDimText = { fg = c.fg_gutter },
 
     -- Fern
     FernBranchText = { fg = c.blue },
@@ -725,16 +725,16 @@ function M.setup()
     BufferCurrentMod = { bg = c.bg, fg = c.warning },
     BufferCurrentSign = { bg = c.bg, fg = c.bg },
     BufferCurrentTarget = { bg = c.bg, fg = c.red },
-    BufferAlternate = { bg = p.fg_gutter, fg = p.fg },
-    BufferAlternateERROR = { bg = p.fg_gutter, fg = c.error },
-    BufferAlternateHINT = { bg = p.fg_gutter, fg = c.hint },
-    -- BufferAlternateIcon = { bg = p.fg_gutter, fg = c. },
-    BufferAlternateIndex = { bg = p.fg_gutter, fg = c.info },
-    BufferAlternateINFO = { bg = p.fg_gutter, fg = c.info },
-    BufferAlternateMod = { bg = p.fg_gutter, fg = c.warning },
-    BufferAlternateSign = { bg = p.fg_gutter, fg = c.info },
-    BufferAlternateTarget = { bg = p.fg_gutter, fg = c.red },
-    BufferAlternateWARN = { bg = p.fg_gutter, fg = c.warning },
+    BufferAlternate = { bg = c.fg_gutter, fg = p.fg },
+    BufferAlternateERROR = { bg = c.fg_gutter, fg = c.error },
+    BufferAlternateHINT = { bg = c.fg_gutter, fg = c.hint },
+    -- BufferAlternateIcon = { bg = c.fg_gutter, fg = c. },
+    BufferAlternateIndex = { bg = c.fg_gutter, fg = c.info },
+    BufferAlternateINFO = { bg = c.fg_gutter, fg = c.info },
+    BufferAlternateMod = { bg = c.fg_gutter, fg = c.warning },
+    BufferAlternateSign = { bg = c.fg_gutter, fg = c.info },
+    BufferAlternateTarget = { bg = c.fg_gutter, fg = c.red },
+    BufferAlternateWARN = { bg = c.fg_gutter, fg = c.warning },
     BufferVisible = { bg = c.bg_statusline, fg = p.fg },
     BufferVisibleERROR = { bg = c.bg_statusline, fg = c.error },
     BufferVisibleHINT = { bg = c.bg_statusline, fg = c.hint },
@@ -800,13 +800,13 @@ function M.setup()
     CmpGhostText = { fg = c.terminal_black },
 
     CmpItemAbbr = { fg = p.fg, bg = c.none },
-    CmpItemAbbrDeprecated = { fg = p.fg_gutter, bg = c.none, strikethrough = true },
+    CmpItemAbbrDeprecated = { fg = c.fg_gutter, bg = c.none, strikethrough = true },
     CmpItemAbbrMatch = { fg = c.blue1, bg = c.none },
     CmpItemAbbrMatchFuzzy = { fg = c.blue1, bg = c.none },
 
     CmpItemMenu = { fg = c.comment, bg = c.none },
 
-    CmpItemKindDefault = { fg = p.fg_dark, bg = c.none },
+    CmpItemKindDefault = { fg = c.fg_dark, bg = c.none },
 
     CmpItemKindCodeium = { fg = c.teal, bg = c.none },
     CmpItemKindCopilot = { fg = c.teal, bg = c.none },
@@ -820,12 +820,12 @@ function M.setup()
     NavicText = { fg = p.fg, bg = c.none },
 
     AerialNormal = { fg = p.fg, bg = c.none },
-    AerialGuide = { fg = p.fg_gutter },
+    AerialGuide = { fg = c.fg_gutter },
     AerialLine = { link = "LspInlayHint" },
 
-    IndentBlanklineChar = { fg = p.fg_gutter, nocombine = true },
+    IndentBlanklineChar = { fg = c.fg_gutter, nocombine = true },
     IndentBlanklineContextChar = { fg = c.purple, nocombine = true },
-    IblIndent = { fg = p.fg_gutter, nocombine = true },
+    IblIndent = { fg = c.fg_gutter, nocombine = true },
     IblScope = { fg = c.purple, nocombine = true },
 
     -- Scrollbar
@@ -855,7 +855,7 @@ function M.setup()
 
     -- Lazy
     LazyProgressDone = { bold = true, fg = c.magenta2 },
-    LazyProgressTodo = { bold = true, fg = p.fg_gutter },
+    LazyProgressTodo = { bold = true, fg = c.fg_gutter },
 
     -- Notify
     NotifyBackground = { fg = p.fg, bg = c.bg },
@@ -887,8 +887,8 @@ function M.setup()
     -- Mini
     MiniCompletionActiveParameter = { underline = true },
 
-    MiniCursorword = { bg = p.fg_gutter },
-    MiniCursorwordCurrent = { bg = p.fg_gutter },
+    MiniCursorword = { bg = c.fg_gutter },
+    MiniCursorwordCurrent = { bg = c.fg_gutter },
 
     MiniIndentscopeSymbol = { fg = c.blue1, nocombine = true },
     MiniIndentscopePrefix = { nocombine = true }, -- Make it invisible
@@ -907,9 +907,9 @@ function M.setup()
     MiniStarterSection = { fg = c.blue1 },
     MiniStarterQuery = { fg = c.info },
 
-    MiniStatuslineDevinfo = { fg = p.fg_dark, bg = c.bg_highlight },
-    MiniStatuslineFileinfo = { fg = p.fg_dark, bg = c.bg_highlight },
-    MiniStatuslineFilename = { fg = p.fg_dark, bg = p.fg_gutter },
+    MiniStatuslineDevinfo = { fg = c.fg_dark, bg = c.bg_highlight },
+    MiniStatuslineFileinfo = { fg = c.fg_dark, bg = c.bg_highlight },
+    MiniStatuslineFilename = { fg = c.fg_dark, bg = c.fg_gutter },
     MiniStatuslineInactive = { fg = c.blue, bg = c.bg_statusline },
     MiniStatuslineModeCommand = { fg = c.black, bg = c.yellow, bold = true },
     MiniStatuslineModeInsert = { fg = c.black, bg = c.green, bold = true },
@@ -920,10 +920,10 @@ function M.setup()
 
     MiniSurround = { bg = c.orange, fg = c.black },
 
-    MiniTablineCurrent = { fg = p.fg, bg = p.fg_gutter },
+    MiniTablineCurrent = { fg = p.fg, bg = c.fg_gutter },
     MiniTablineFill = { bg = c.black },
     MiniTablineHidden = { fg = c.dark5, bg = c.bg_statusline },
-    MiniTablineModifiedCurrent = { fg = c.warning, bg = p.fg_gutter },
+    MiniTablineModifiedCurrent = { fg = c.warning, bg = c.fg_gutter },
     MiniTablineModifiedHidden = { bg = c.bg_statusline, fg = c.warning_darker },
     MiniTablineModifiedVisible = { fg = c.warning, bg = c.bg_statusline },
     MiniTablineTabpagesection = { bg = c.bg_statusline, fg = c.none },
@@ -936,9 +936,9 @@ function M.setup()
     MiniTrailspace = { bg = c.red },
 
     -- Noice
-    NoiceCompletionItemKindDefault = { fg = p.fg_dark, bg = c.none },
+    NoiceCompletionItemKindDefault = { fg = c.fg_dark, bg = c.none },
 
-    TreesitterContext = { bg = p.fg_gutter_dark },
+    TreesitterContext = { bg = c.fg_gutter_dark },
     Hlargs = { fg = c.yellow },
   }
 
