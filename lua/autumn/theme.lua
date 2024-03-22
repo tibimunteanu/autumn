@@ -10,9 +10,61 @@ local M = {}
 
 ---@return Theme
 function M.setup()
-  local config = require("autumn.config")
+  local o = require("autumn.config").options
 
-  local o = config.options
+  local p = {
+    fg = "#a0a088",
+
+    bg = "#1e1e1e",
+    bg_light = "#252526",
+    bg_lighter = "#333333",
+    bg_lightest = "#4b4b4b",
+
+    keyword = "#7d9da3",
+    method = "#ddbb77",
+    static = "#efaa57",
+    macro = "#ddbb77",
+    comment = "#696f69",
+    literal = "#ce9178",
+    type = "#6faf8a",
+    struct = "#91af82",
+    enum = "#91af82",
+    enumMember = "#91ab62",
+    variable = "#e7e0b9",
+    parameter = "#d0c5a0",
+    punctuation = "#919f89",
+
+    error = "#df6a6a",
+    warning = "#a58354",
+    info = "#7aa2f7",
+    hint = "#1a2b32",
+    trace = "#41385b",
+
+    error_border = "#542931",
+    warning_border = "#55473a",
+    info_border = "#164a5b",
+    hint_border = "#2c2f44",
+    trace_border = "#41385b",
+
+    diff = {
+      add = "#20303b",
+      delete = "#37222c",
+      change = "#1f2231",
+      text = "#394b70",
+    },
+
+    git = { 
+      change = "#6183bb",
+      add = "#449dab",
+      delete = "#914c54"
+    },
+
+    gitSigns = {
+      add = "#266d6a",
+      change = "#536c9e",
+      delete = "#b2555b"
+    },
+  };
 
   local c = {
     none = "NONE",
@@ -76,8 +128,16 @@ function M.setup()
     comment_border = "#2c2f44",
     trace_border = "#41385b",
     headline = "#1f2230",
-    git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
-    gitSigns = { add = "#266d6a", change = "#536c9e", delete = "#b2555b" },
+    git = { 
+      change = "#6183bb",
+      add = "#449dab",
+      delete = "#914c54"
+    },
+    gitSigns = {
+      add = "#266d6a",
+      change = "#536c9e",
+      delete = "#b2555b"
+    },
   };
 
   c.diff = {
@@ -203,7 +263,7 @@ function M.setup()
     -- default,
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Constant = { fg = c.orange }, -- (preferred) any constant
+    Constant = { fg = p.literal }, -- (preferred) any constant
     String = { fg = c.green }, --   a string constant: "this is a string"
     Character = { fg = c.green }, --  a character constant: 'c', '\n'
     -- Number        = { }, --   a number constant: 234, 0xff
@@ -227,12 +287,12 @@ function M.setup()
     -- Macro         = { }, --    same as Define
     -- PreCondit     = { }, --  preprocessor #if, #else, #endif, etc.
 
-    Type = { fg = c.blue1 }, -- (preferred) int, long, char, etc.
+    Type = { fg = p.type }, -- (preferred) int, long, char, etc.
     -- StorageClass  = { }, -- static, register, volatile, etc.
     -- Structure     = { }, --  struct, union, enum, etc.
     -- Typedef       = { }, --  A typedef
 
-    Special = { fg = c.blue1 }, -- (preferred) any special symbol
+    Special = { fg = p.static }, -- (preferred) any special symbol
     -- SpecialChar   = { }, --  special character in a constant
     -- Tag           = { }, --    you can use CTRL-] on this
     Delimiter = { link = "Special" }, --  character that needs attention
@@ -368,7 +428,6 @@ function M.setup()
     ["@type.qualifier"] = { link = "@keyword" },
 
     --- Misc
-    -- TODO:
     -- ["@comment.documentation"] = { },
     ["@operator"] = { fg = c.blue5 }, -- For any operator: `+`, but also `->` and `*` in C.
 
@@ -390,7 +449,7 @@ function M.setup()
     ["@variable.parameter.builtin"] = { fg = c.light_yellow}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
     --- Keywords
-    ["@keyword"] = { fg = c.purple }, -- For keywords that don't fall in previous categories.
+    ["@keyword"] = { fg = p.keyword }, -- For keywords that don't fall in previous categories.
     ["@keyword.function"] = { fg = c.magenta }, -- For keywords used to define a fuction.
 
     ["@label"] = { fg = c.blue }, -- For labels: `label:` in C and `:label:` in Lua.
@@ -449,6 +508,7 @@ function M.setup()
     ["@lsp.type.typeAlias"] = { link = "@type.definition" },
     ["@lsp.type.unresolvedReference"] = { undercurl = true, sp = c.error },
     ["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
+    ["@lsp.type.enumMember.zig"] = { fg = p.enumMember },
     ["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
     ["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
     ["@lsp.typemod.enumMember.defaultLibrary"] = { link = "@constant.builtin" },
@@ -683,18 +743,18 @@ function M.setup()
     BufferVisibleMod = { bg = c.bg_statusline, fg = c.warning },
     BufferVisibleSign = { bg = c.bg_statusline, fg = c.info },
     BufferVisibleTarget = { bg = c.bg_statusline, fg = c.red },
-    BufferInactive = { bg = bg_highlight_darker, fg = darker5 },
-    BufferInactiveERROR = { bg = bg_highlight_darker, fg = error_darker },
-    BufferInactiveHINT = { bg = bg_highlight_darker, fg = hint_darker },
+    BufferInactive = { bg = c.bg_highlight_darker, fg = c.darker5 },
+    BufferInactiveERROR = { bg = c.bg_highlight_darker, fg = c.error_darker },
+    BufferInactiveHINT = { bg = c.bg_highlight_darker, fg = c.hint_darker },
     -- BufferInactiveIcon = { bg = c.bg_statusline, fg = c.hint },
-    BufferInactiveINFO = { bg = bg_highlight_darker, fg = info_darker },
-    BufferInactiveWARN = { bg = bg_highlight_darker, fg = warning2_dark },
-    BufferInactiveIndex = { bg = bg_highlight_darker, fg = c.dark5 },
-    BufferInactiveMod = { bg = bg_highlight_darker, fg = warning2_dark },
-    BufferInactiveSign = { bg = bg_highlight_darker, fg = c.bg },
-    BufferInactiveTarget = { bg = bg_highlight_darker, fg = c.red },
+    BufferInactiveINFO = { bg = c.bg_highlight_darker, fg = c.info_darker },
+    BufferInactiveWARN = { bg = c.bg_highlight_darker, fg = c.warning2_dark },
+    BufferInactiveIndex = { bg = c.bg_highlight_darker, fg = c.dark5 },
+    BufferInactiveMod = { bg = c.bg_highlight_darker, fg = c.warning2_dark },
+    BufferInactiveSign = { bg = c.bg_highlight_darker, fg = c.bg },
+    BufferInactiveTarget = { bg = c.bg_highlight_darker, fg = c.red },
     BufferOffset = { bg = c.bg_statusline, fg = c.dark5 },
-    BufferTabpageFill = { bg = bg_highlight_dark, fg = c.dark5 },
+    BufferTabpageFill = { bg = c.bg_highlight_dark, fg = c.dark5 },
     BufferTabpages = { bg = c.bg_statusline, fg = c.none },
 
     -- Sneak
@@ -874,7 +934,6 @@ function M.setup()
     MiniTrailspace = { bg = c.red },
 
     -- Noice
-
     NoiceCompletionItemKindDefault = { fg = c.fg_dark, bg = c.none },
 
     TreesitterContext = { bg = c.fg_gutter_dark },
