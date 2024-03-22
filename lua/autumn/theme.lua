@@ -191,7 +191,7 @@ function M.setup()
   theme.highlights = {
     Foo = { bg = c.magenta2, fg = c.fg },
 
-    Comment = { fg = c.comment }, -- any comment
+    Comment = { fg = p.comment }, -- any comment
     ColorColumn = { bg = c.black }, -- used for the columns set with 'colorcolumn'
     Conceal = { fg = c.dark5 }, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor = { fg = c.bg, bg = c.fg }, -- character under the cursor
@@ -281,7 +281,7 @@ function M.setup()
     Keyword = { fg = c.cyan }, --  any other keyword
     -- Exception     = { }, --  try, catch, throw
 
-    PreProc = { fg = c.cyan }, -- (preferred) generic Preprocessor
+    PreProc = { fg = p.static }, -- (preferred) generic Preprocessor
     -- Include       = { }, --  preprocessor #include
     -- Define        = { }, --   preprocessor #define
     -- Macro         = { }, --    same as Define
@@ -383,6 +383,7 @@ function M.setup()
     ["@keyword.debug"] = { link = "Debug" },
     ["@keyword.directive.define"] = { link = "Define" },
     ["@keyword.exception"] = { link = "Exception" },
+    ["@keyword.exception.zig"] = { fg = p.punctuation },
     ["@number.float"] = { link = "Float" },
     ["@function"] = { link = "Function" },
     ["@function.builtin"] = { link = "Special" },
@@ -429,12 +430,12 @@ function M.setup()
 
     --- Misc
     -- ["@comment.documentation"] = { },
-    ["@operator"] = { fg = c.blue5 }, -- For any operator: `+`, but also `->` and `*` in C.
+    ["@operator"] = { fg = p.punctuation }, -- For any operator: `+`, but also `->` and `*` in C.
 
     --- Punctuation
-    ["@punctuation.delimiter"] = { fg = c.blue5 }, -- For delimiters ie: `.`
-    ["@punctuation.bracket"] = { fg = c.fg_dark }, -- For brackets and parens.
-    ["@punctuation.special"] = { fg = c.blue5 }, -- For special symbols (e.g. `{}` in string interpolation)
+    ["@punctuation.delimiter"] = { fg = p.punctuation }, -- For delimiters ie: `.`
+    ["@punctuation.bracket"] = { fg = p.punctuation }, -- For brackets and parens.
+    ["@punctuation.special"] = { fg = p.punctuation }, -- For special symbols (e.g. `{}` in string interpolation)
     ["@markup.list"] = { fg = c.blue5 }, -- For special punctutation that does not fall in the catagories before.
     ["@markup.list.markdown"] = { fg = c.orange, bold = true },
 
@@ -445,7 +446,7 @@ function M.setup()
 
     --- Functions
     ["@constructor"] = { fg = c.magenta }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-    ["@variable.parameter"] = { fg = c.yellow }, -- For parameters of a function.
+    ["@variable.parameter"] = { fg = p.parameter }, -- For parameters of a function.
     ["@variable.parameter.builtin"] = { fg = c.light_yellow}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
     --- Keywords
