@@ -68,7 +68,7 @@ function M.setup()
 
   local c = {
     none = "NONE",
-    bg = "#1a1b26",
+    bg = "#1e1e1e",
     bg_dark = "#16161e",
     bg_highlight = "#292e42",
     bg_highlight_darker = "#202331",
@@ -264,14 +264,14 @@ function M.setup()
     -- Uncomment and edit if you want more specific syntax highlighting.
 
     Constant = { fg = p.literal }, -- (preferred) any constant
-    String = { fg = c.green }, --   a string constant: "this is a string"
+    String = { fg = p.literal }, --   a string constant: "this is a string"
     Character = { fg = c.green }, --  a character constant: 'c', '\n'
     -- Number        = { }, --   a number constant: 234, 0xff
     -- Boolean       = { }, --  a boolean constant: TRUE, false
     -- Float         = { }, --    a floating point constant: 2.3e10
 
     Identifier = { fg = c.magenta }, -- (preferred) any variable name
-    Function = { fg = c.blue }, -- function name (also: methods for classes)
+    Function = { fg = p.method }, -- function name (also: methods for classes)
 
     Statement = { fg = c.magenta }, -- (preferred) any statement
     -- Conditional   = { }, --  if, then, else, endif, switch, etc.
@@ -457,7 +457,7 @@ function M.setup()
     --- Types
     ["@type.builtin"] = { fg = c.dark_blue1 },
     ["@variable.member"] = { fg = c.green1 }, -- For fields.
-    ["@property"] = { fg = c.green1 },
+    ["@property"] = { fg = p.fg },
 
     --- Identifiers
     ["@variable"] = { fg = c.fg }, -- Any variable name that does not have another highlight.
@@ -497,7 +497,8 @@ function M.setup()
     ["@lsp.type.interface"] = { fg = c.light_blue1 },
     ["@lsp.type.keyword"] = { link = "@keyword" },
     ["@lsp.type.lifetime"] = { link = "@keyword.storage" },
-    ["@lsp.type.namespace"] = { link = "@module" },
+    ["@lsp.type.namespace"] = { fg = p.type },
+    ["@lsp.type.namespace.zig"] = { fg = p.type },
     ["@lsp.type.number"] = { link = "@number" },
     ["@lsp.type.operator"] = { link = "@operator" },
     ["@lsp.type.parameter"] = { link = "@variable.parameter" },
