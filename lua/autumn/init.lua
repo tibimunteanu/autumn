@@ -3,7 +3,6 @@ local config = require("autumn.config")
 
 local M = {}
 
----@param config Config
 function M.autocmds(config)
   local group = vim.api.nvim_create_augroup("autumn", { clear = true })
 
@@ -53,7 +52,6 @@ function M.syntax(syntax)
   end
 end
 
----@param colors ColorScheme
 function M.terminal(colors)
   -- dark
   vim.g.terminal_color_0 = colors.black
@@ -83,7 +81,6 @@ function M.terminal(colors)
   vim.g.terminal_color_14 = colors.cyan
 end
 
----@param opts Config|nil
 function M.load(opts)
   if opts then
     config.extend(opts)

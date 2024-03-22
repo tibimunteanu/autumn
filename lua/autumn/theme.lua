@@ -1,14 +1,5 @@
 local M = {}
---
----@class Highlight
----@field fg string|nil
----@field bg string|nil
----@field sp string|nil
----@field link string|nil
 
----@alias Highlights table<string,Highlight>
-
----@return Theme
 function M.setup()
   local o = require("autumn.config").options
 
@@ -181,13 +172,11 @@ function M.setup()
   c.hint_dark = c.teal_dark
   c.hint_darker = c.teal_darker
 
-  ---@class Theme
   local theme = {
     config = o,
     colors = c,
   }
 
-  ---@field highlights Highlights
   theme.highlights = {
     Foo = { bg = c.magenta2, fg = p.fg },
 
@@ -379,6 +368,7 @@ function M.setup()
     ["@keyword.conditional"] = { link = "Conditional" },
     ["@constant"] = { link = "Constant" },
     ["@constant.builtin"] = { link = "Special" },
+    ["@constant.builtin.zig"] = { fg = p.literal },
     ["@constant.macro"] = { link = "Define" },
     ["@keyword.debug"] = { link = "Debug" },
     ["@keyword.directive.define"] = { link = "Define" },
@@ -1014,7 +1004,6 @@ function M.setup()
     end
   end
 
-  ---@type table<string, table>
   theme.defer = {}
 
   if o.hide_inactive_statusline then
