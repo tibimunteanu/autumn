@@ -457,11 +457,11 @@ function M.setup()
 
     --- Types
     ["@type.builtin"] = { fg = c.dark_blue1 },
-    ["@variable.member"] = { fg = c.green1 }, -- For fields.
+    ["@variable.member"] = { fg = c.fg }, -- For fields.
     ["@property"] = { fg = p.fg },
 
     --- Identifiers
-    ["@variable"] = { fg = c.fg }, -- Any variable name that does not have another highlight.
+    ["@variable"] = { fg = p.fg }, -- Any variable name that does not have another highlight.
     ["@variable.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
     ["@module.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
 
