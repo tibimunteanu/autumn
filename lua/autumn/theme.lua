@@ -259,15 +259,15 @@ function M.setup()
     -- Boolean       = { }, --  a boolean constant: TRUE, false
     -- Float         = { }, --    a floating point constant: 2.3e10
 
-    Identifier = { fg = c.magenta }, -- (preferred) any variable name
+    Identifier = { fg = p.fg }, -- (preferred) any variable name
     Function = { fg = p.method }, -- function name (also: methods for classes)
 
     Statement = { fg = c.magenta }, -- (preferred) any statement
     -- Conditional   = { }, --  if, then, else, endif, switch, etc.
     -- Repeat        = { }, --   for, do, while, etc.
     -- Label         = { }, --    case, default, etc.
-    Operator = { fg = c.blue5 }, -- "sizeof", "+", "*", etc.
-    Keyword = { fg = c.cyan }, --  any other keyword
+    Operator = { fg = p.operator }, -- "sizeof", "+", "*", etc.
+    Keyword = { fg = p.keyword }, --  any other keyword
     -- Exception     = { }, --  try, catch, throw
 
     PreProc = { fg = p.static }, -- (preferred) generic Preprocessor
@@ -360,7 +360,7 @@ function M.setup()
 
     -- These groups are for the Neovim tree-sitter highlights.
     ["@annotation"] = { link = "PreProc" },
-    ["@attribute"] = { link = "PreProc" },
+    ["@attribute"] = { link = "@keyword" },
     ["@attribute.zig"] = { link = "@keyword" },
     ["@boolean"] = { link = "Boolean" },
     ["@character"] = { link = "Character" },
@@ -442,7 +442,7 @@ function M.setup()
 
     --- Keywords
     ["@keyword"] = { fg = p.keyword }, -- For keywords that don't fall in previous categories.
-    ["@keyword.function"] = { fg = c.magenta }, -- For keywords used to define a fuction.
+    ["@keyword.function"] = { link = "@keyword" }, -- For keywords used to define a fuction.
 
     ["@label"] = { fg = p.punctuation }, -- For labels: `label:` in C and `:label:` in Lua.
 
