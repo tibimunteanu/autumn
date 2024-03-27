@@ -523,6 +523,7 @@ function M.setup()
     ["@lsp.typemod.variable.static"] = { link = "@constant" },
     -- NOTE: maybe add these with distinct highlights?
     -- ["@lsp.typemod.variable.globalScope"] (global variables)
+    ["zig1"] = { fg = p.fg },
 
     -- ts-rainbow
     rainbowcol1 = { fg = c.red },
