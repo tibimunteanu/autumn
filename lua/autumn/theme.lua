@@ -510,6 +510,8 @@ function M.setup()
     ["@lsp.typemod.keyword.injected"] = { link = "@keyword" },
     ["@lsp.typemod.macro.defaultLibrary"] = { link = "@function.builtin" },
     ["@lsp.typemod.method.defaultLibrary"] = { link = "@function.builtin" },
+    ["@lsp.mod.declaration.zig"] = {link = "Function"},
+    ["@lsp.typemod.method.declaration.zig"] = {link = "Function"},
     ["@lsp.typemod.operator.injected"] = { link = "@operator" },
     ["@lsp.typemod.string.injected"] = { link = "@string" },
     ["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
