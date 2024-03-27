@@ -262,7 +262,7 @@ function M.setup()
     Identifier = { fg = p.fg }, -- (preferred) any variable name
     Function = { fg = p.method }, -- function name (also: methods for classes)
 
-    Statement = { fg = c.magenta }, -- (preferred) any statement
+    Statement = { fg = p.keyword }, -- (preferred) any statement
     -- Conditional   = { }, --  if, then, else, endif, switch, etc.
     -- Repeat        = { }, --   for, do, while, etc.
     -- Label         = { }, --    case, default, etc.
@@ -447,7 +447,7 @@ function M.setup()
     ["@label"] = { fg = p.punctuation }, -- For labels: `label:` in C and `:label:` in Lua.
 
     --- Types
-    ["@type.builtin"] = { fg = c.dark_blue1 },
+    ["@type.builtin"] = { fg = p.type },
     ["@variable.member"] = { fg = p.fg }, -- For fields.
     ["@property"] = { fg = p.fg },
 
@@ -500,7 +500,7 @@ function M.setup()
     ["@lsp.type.string"] = { link = "@string" },
     ["@lsp.type.typeAlias"] = { link = "@type.definition" },
     ["@lsp.type.unresolvedReference"] = { undercurl = true, sp = c.error },
-    ["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
+    ["@lsp.type.variable"] = { link = "@variable" },
     ["@lsp.type.enumMember.zig"] = { fg = p.enumMember },
     ["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
     ["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
