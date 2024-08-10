@@ -44,18 +44,18 @@ function M.setup()
       text = "#394b70",
     },
 
-    git = { 
+    git = {
       change = "#6183bb",
       add = "#449dab",
-      delete = "#914c54"
+      delete = "#914c54",
     },
 
     gitSigns = {
       add = "#266d6a",
       change = "#536c9e",
-      delete = "#b2555b"
+      delete = "#b2555b",
     },
-  };
+  }
 
   local c = {
     none = "NONE",
@@ -91,7 +91,7 @@ function M.setup()
     dark_blue0 = "#283457",
     dark_blue1 = "#27a1b9",
     dark_blue7 = "#1f2231",
-    light_blue1 = "#6ad5e8";
+    light_blue1 = "#6ad5e8",
     magenta = "#bb9af7",
     magenta2 = "#ff007c",
     purple = "#9d7cd8",
@@ -119,17 +119,17 @@ function M.setup()
     comment_border = "#2c2f44",
     trace_border = "#41385b",
     headline = "#1f2230",
-    git = { 
+    git = {
       change = "#6183bb",
       add = "#449dab",
-      delete = "#914c54"
+      delete = "#914c54",
     },
     gitSigns = {
       add = "#266d6a",
       change = "#536c9e",
-      delete = "#b2555b"
+      delete = "#b2555b",
     },
-  };
+  }
 
   c.diff = {
     add = c.dark_green2,
@@ -438,7 +438,7 @@ function M.setup()
     --- Functions
     ["@constructor"] = { fg = c.magenta }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
     ["@variable.parameter"] = { fg = p.parameter }, -- For parameters of a function.
-    ["@variable.parameter.builtin"] = { fg = c.light_yellow}, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
+    ["@variable.parameter.builtin"] = { fg = c.light_yellow }, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
     --- Keywords
     ["@keyword"] = { fg = p.keyword }, -- For keywords that don't fall in previous categories.
@@ -510,13 +510,15 @@ function M.setup()
     ["@lsp.typemod.keyword.injected"] = { link = "@keyword" },
     ["@lsp.typemod.macro.defaultLibrary"] = { link = "@function.builtin" },
     ["@lsp.typemod.method.defaultLibrary"] = { link = "@function.builtin" },
-    ["@lsp.mod.declaration.zig"] = {link = "Function"},
-    ["@lsp.typemod.method.declaration.zig"] = {link = "Function"},
+    ["@lsp.mod.declaration.zig"] = { link = "Function" },
+    ["@lsp.typemod.method.declaration.zig"] = { link = "Function" },
     ["@lsp.typemod.operator.injected"] = { link = "@operator" },
     ["@lsp.typemod.string.injected"] = { link = "@string" },
     ["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
-    ["@lsp.typemod.type.defaultLibrary"] = { fg = c.dark_blue1 },
-    ["@lsp.typemod.typeAlias.defaultLibrary"] = { fg = c.dark_blue1 },
+    ["@lsp.typemod.type.defaultLibrary"] = { link = "@type.builtin" },
+    ["@lsp.typemod.typeAlias.defaultLibrary"] = { link = "@type.builtin" },
+    -- ["@lsp.typemod.type.defaultLibrary"] = { fg = c.dark_blue1 },
+    -- ["@lsp.typemod.typeAlias.defaultLibrary"] = { fg = c.dark_blue1 },
     ["@lsp.typemod.variable.callable"] = { link = "@function" },
     ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
     ["@lsp.typemod.variable.injected"] = { link = "@variable" },
