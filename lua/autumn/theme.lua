@@ -475,7 +475,7 @@ function M.setup()
     ["@keyword.import.tsx"] = { link = "@keyword" },
     ["@tag.tsx"] = { link = "Type" },
     ["@constructor.tsx"] = { fg = c.blue1 },
-    ["@tag.delimiter.tsx"] = { fg = c.blue_darker },
+    ["@tag.delimiter.tsx"] = { link = "Type" },
 
     -- LSP Semantic Token Groups
     ["@lsp.type.boolean"] = { link = "@boolean" },
