@@ -199,7 +199,7 @@ function M.setup()
     ErrorMsg = { fg = c.error }, -- error messages on the command line
     VertSplit = { fg = c.border }, -- the column separating vertically split windows
     WinSeparator = { fg = c.border, bold = true }, -- the column separating vertically split windows
-    Folded = { fg = c.blue, bg = c.fg_gutter }, -- line used for closed folds
+    Folded = { bg = c.bg_light }, -- line used for closed folds
     FoldColumn = { bg = o.transparent and c.none or c.bg, fg = c.comment }, -- 'foldcolumn'
     SignColumn = { bg = o.transparent and c.none or c.bg, fg = c.fg_gutter }, -- column where |signs| are displayed
     SignColumnSB = { bg = c.bg_sidebar, fg = c.fg_gutter }, -- column where |signs| are displayed
@@ -297,6 +297,15 @@ function M.setup()
 
     Error = { fg = c.error }, -- (preferred) any erroneous construct
     Todo = { bg = c.yellow, fg = c.bg }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+
+    -- UfoFoldedFg = {fg = c.fg},
+    UfoFoldedBg = { bg = c.none },
+    UfoPreviewSbar = { bg = c.none },
+    UfoPreviewThumb = { bg = c.none },
+    UfoPreviewWinBar = { bg = c.none },
+    UfoPreviewCursorLine = { bg = c.none },
+    UfoFoldedEllipsis = { bg = c.none },
+    UfoCursorFoldedLine = { bg = c.none },
 
     qfLineNr = { fg = c.dark5 },
     qfFileName = { fg = c.blue },
@@ -1018,16 +1027,7 @@ function M.setup()
     end
   end
 
-  theme.defer = {
-    -- UfoFoldedFg = {fg = c.fg},
-    UfoFoldedBg = { bg = c.none },
-    UfoPreviewSbar = { bg = c.none },
-    UfoPreviewThumb = { bg = c.none },
-    UfoPreviewWinBar = { bg = c.none },
-    UfoPreviewCursorLine = { bg = c.none },
-    UfoFoldedEllipsis = { bg = c.none },
-    UfoCursorFoldedLine = { bg = c.none },
-  }
+  theme.defer = {}
 
   if o.hide_inactive_statusline then
     local inactive = { underline = true, bg = c.none, fg = c.bg, sp = c.border }
