@@ -298,6 +298,8 @@ function M.setup()
     Error = { fg = c.error }, -- (preferred) any erroneous construct
     Todo = { bg = c.yellow, fg = c.bg }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
+    UfoFoldedBg = { bg = c.none },
+
     qfLineNr = { fg = c.dark5 },
     qfFileName = { fg = c.blue },
 
