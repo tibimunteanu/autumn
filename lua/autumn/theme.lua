@@ -478,6 +478,7 @@ function M.setup()
     ["@tag.delimiter.tsx"] = { link = "Type" },
 
     -- LSP Semantic Token Groups
+    ["@keyword.operator.typescript"] = { link = "@keyword" },
     ["@character.special.typescript"] = { link = "Punctuation" },
     ["@module.typescript"] = { link = "Type" },
     ["@constant.builtin.typescript"] = { link = "@constant" },
