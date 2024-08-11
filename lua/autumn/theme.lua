@@ -471,6 +471,8 @@ function M.setup()
     ["@module"] = { link = "Include" },
 
     -- tsx
+    ["@constant.builtin.tsx"] = { link = "@constant" },
+    ["@keyword.import.tsx"] = { link = "@keyword" },
     ["@tag.tsx"] = { link = "Type" },
     ["@constructor.tsx"] = { fg = c.blue1 },
     ["@tag.delimiter.tsx"] = { fg = c.blue_darker },
