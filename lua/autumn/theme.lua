@@ -317,6 +317,7 @@ function M.setup()
     markdownH1 = { fg = c.magenta, bold = true },
     markdownH2 = { fg = c.blue, bold = true },
     markdownLinkText = { fg = c.blue, underline = true },
+    markdown_inline = { bg = c.none, fg = c.fg },
 
     ["helpCommand"] = { bg = c.terminal_black, fg = c.blue },
 
@@ -457,12 +458,11 @@ function M.setup()
     ["@module.builtin"] = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
 
     --- Text
-    -- ["@markup.raw.markdown"] = { fg = c.blue },
-    ["@markup.raw.markdown_inline"] = { bg = c.terminal_black, fg = c.blue },
+    ["@markup.raw.markdown_inline"] = { bg = c.none, fg = c.fg },
     ["@markup.link"] = { fg = c.teal },
 
-    ["@markup.list.unchecked"] = { fg = c.blue }, -- For brackets and parens.
-    ["@markup.list.checked"] = { fg = c.green1 }, -- For brackets and parens.
+    ["@markup.list.unchecked"] = { fg = c.fg }, -- For brackets and parens.
+    ["@markup.list.checked"] = { fg = c.fg }, -- For brackets and parens.
 
     ["@diff.plus"] = { link = "DiffAdd" },
     ["@diff.minus"] = { link = "DiffDelete" },
