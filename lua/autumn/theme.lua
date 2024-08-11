@@ -478,6 +478,7 @@ function M.setup()
     ["@tag.delimiter.tsx"] = { link = "Type" },
 
     -- LSP Semantic Token Groups
+    ["@lsp.type.interface.typescript"] = { link = "Type" },
     ["@lsp.type.boolean"] = { link = "@boolean" },
     ["@lsp.type.builtinType"] = { link = "@type.builtin" },
     ["@lsp.type.comment"] = { link = "@comment" },
