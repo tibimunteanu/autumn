@@ -471,7 +471,7 @@ function M.setup()
     ["@module"] = { link = "Include" },
 
     -- tsx
-    ["@tag.tsx"] = { fg = c.red },
+    ["@tag.tsx"] = { link = "Type" },
     ["@constructor.tsx"] = { fg = c.blue1 },
     ["@tag.delimiter.tsx"] = { fg = c.blue_darker },
 
